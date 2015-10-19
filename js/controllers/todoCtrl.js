@@ -79,13 +79,13 @@ $scope.$watchCollection('todos', function () {
 $scope.getFirstAndRestSentence = function($string) {
 	var head = $string;
 	var desc = "";
-
+/*
 	var separators = [". ", "? ", "! ", '\n'];
 
 	var firstIndex = -1;
 	for (var i in separators) {
 		var index = $string.indexOf(separators[i]);
-		if (index == -1) continue;
+    	if (index == -1) continue;
 		if (firstIndex == -1) {firstIndex = index; continue;}
 		if (firstIndex > index) {firstIndex = index;}
 	}
@@ -94,6 +94,7 @@ $scope.getFirstAndRestSentence = function($string) {
 		head = $string.slice(0, firstIndex+1);
 		desc = $string.slice(firstIndex+1);
 	}
+*/
 	return [head, desc];
 };
 
