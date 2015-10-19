@@ -32,7 +32,7 @@ if (!roomId || roomId.length === 0) {
 
 // TODO: Please change this URL for your app
 // var firebaseURL = "https://classquestion.firebaseio.com/";
-var firebaseURL = "https://brilliant-fire-519.firebaseio.com/";
+var firebaseURL = "https://blinding-inferno-3397.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
