@@ -32,7 +32,7 @@ if (!roomId || roomId.length === 0) {
 
 // TODO: Please change this URL for your app
 // var firebaseURL = "https://classquestion.firebaseio.com/";
-var firebaseURL = "https://brilliant-fire-519.firebaseio.com/";
+var firebaseURL = "https://intense-inferno-7677.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -62,7 +62,7 @@ $scope.$watchCollection('todos', function () {
 		}
 
 		// set time
-		todo.dateString = new Date(todo.timestamp).toString();
+		todo.dateString = new Date(todo.timestamp);
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
