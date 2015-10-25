@@ -32,7 +32,7 @@ if (!roomId || roomId.length === 0) {
 
 // TODO: Please change this URL for your app
 // var firebaseURL = "https://classquestion.firebaseio.com/";
-var firebaseURL = "https://blinding-inferno-3397.firebaseio.com/";
+var firebaseURL = "https://intense-inferno-7677.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -99,7 +99,7 @@ $scope.getFirstAndRestSentence = function($string) {
 };
 
 $scope.addTodo = function () {
-	var newTodo = $scope.input.wholeMsg.trim();
+    var newTodo = $scope.input.wholeMsg.trim();
 
 	// No input, so just do nothing
 	if (!newTodo.length) {
@@ -111,7 +111,7 @@ $scope.addTodo = function () {
 	var desc = firstAndLast[1];
 
 	$scope.todos.$add({
-		wholeMsg: newTodo,
+	    wholeMsg: newTodo,
 		head: head,
 		headLastChar: head.slice(-1),
 		desc: desc,
