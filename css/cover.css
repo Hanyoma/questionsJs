@@ -20,6 +20,10 @@ a:hover {
 }
 
 
+
+/* Header Image Background - Change the URL below to your image path (example: ../images/background.jpg) */
+
+
 /*
  * Base structure
  */
@@ -27,12 +31,20 @@ a:hover {
 html,
 body {
   height: 100%;
-  background-color: #333;
+  
+  
+  background-repeat: no-repeat;
+  background: url('http://41.media.tumblr.com/9496bed9c9b6e9e475c3220edee7fb20/tumblr_nwm2jacJpF1qa934xo3_r1_1280.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+
 }
 body {
-  color: #fff;
+  color: #303030;
   text-align: center;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+  text-shadow: 0 2px 5px #fff;
 }
 
 /* Extra markup and styles for table-esque vertical and horizontal centering */
@@ -55,8 +67,23 @@ body {
 
 /* Padding for spacing */
 .inner {
+  margin-top: 50px;
   padding: 30px;
+  
 }
+
+.transbox
+{
+  padding-top: 1em;
+  padding-bottom: 1em;
+  padding-right: 2.5em;
+  padding-left: 2.5em;
+  background-color: #ffffff;
+  opacity:0.85;
+  filter:alpha(opacity=85); /* For IE8 and earlier */
+}
+
+
 
 
 /*
@@ -123,8 +150,9 @@ body {
  */
 
 .mastfoot {
-  color: #999; /* IE8 proofing */
-  color: rgba(255,255,255,.5);
+  color: #fff; /* IE8 proofing */
+  color: #fffff;
+  text-shadow: 0 1px 3px #000;
 }
 
 

@@ -21,10 +21,13 @@
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
 	<link rel="stylesheet" href="main.css">
 
+
 </head>
 <body ng-controller="TodoCtrl">
-	<font size="10">Questions for {{roomId}}?</font>&nbsp;
-
+	
+    <div id="title">
+		<font size="10">Questions for {{roomId}}?</font>&nbsp;
+	</div>
 	<!--
 
 	<a ng-class="{selected: location.path() == '/newechos'}" class="btn btn-primary" href="#/newechos">New Echos</a>
@@ -67,7 +70,7 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 		</h4>
-		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString}}
+		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>

@@ -62,7 +62,7 @@ $scope.$watchCollection('todos', function () {
 		}
 
 		// set time
-		todo.dateString = new Date(todo.timestamp).toString();
+		todo.dateString = new Date(todo.timestamp);
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
