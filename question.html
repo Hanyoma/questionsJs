@@ -49,12 +49,20 @@
 	<form id="todo-form" ng-submit="addTodo()">
 -->
 <textarea type="text" id="new-todo" class="form-control"
+placeholder="Title"
+ng-model="input.wholeMsg" position.divleft></textarea>
+
+<textarea type="text" id="new-todo2" class="form-control"
 placeholder="Search or Post Question"
-ng-model="input.wholeMsg" autofocus></textarea>
+ng-model="input2.wholeMsg" autofocus></textarea>
+
+
 <span class="input-group-btn">
 	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 </span>
 </div><!-- /input-group -->
+
+
 
 
 <div class="list-group" id="todo-list">
@@ -67,9 +75,11 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 		</h4>
-		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString}}
-			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
-
+		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
+		<p class="list-group-item-text"><span ng-bind-html="todo.desc"></span> description: {{todo.desc}}
+			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
+<!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
+ -->
 			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
