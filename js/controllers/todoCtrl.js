@@ -99,6 +99,7 @@ $scope.getFirstAndRestSentence = function($string) {
 
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
+	var newTodo2 = $scope.input2.wholeMsg.trim();
 
 	// No input, so just do nothing
 	if (!newTodo.length) {
@@ -110,10 +111,11 @@ $scope.addTodo = function () {
 	var desc = firstAndLast[1];
 
 	$scope.todos.$add({
-		wholeMsg: newTodo,
+		wholeMsg: newTodo + " " + newTodo2,
+		desc: newTodo,
 		head: head,
 		headLastChar: head.slice(-1),
-		desc: desc,
+		//desc: desc,
 		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
@@ -123,6 +125,7 @@ $scope.addTodo = function () {
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
+	$scope.input2.wholeMsg= '';
 };
 
 $scope.editTodo = function (todo) {

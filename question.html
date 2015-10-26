@@ -52,8 +52,14 @@
 	<form id="todo-form" ng-submit="addTodo()">
 -->
 <textarea type="text" id="new-todo" class="form-control"
+placeholder="Title"
+ng-model="input.wholeMsg" position.divleft></textarea>
+
+<textarea type="text" id="new-todo2" class="form-control"
 placeholder="Search or Post Question"
-ng-model="input.wholeMsg" autofocus></textarea>
+ng-model="input2.wholeMsg" autofocus></textarea>
+
+
 <span class="input-group-btn">
 	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
 </span>
@@ -70,7 +76,10 @@ ng-model="input.wholeMsg" autofocus></textarea>
 			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
 			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
 		</h4>
-		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}
+
+		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> 
+			{{todo.desc}} <br>
+			created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}<br>
 			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
 
 			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
