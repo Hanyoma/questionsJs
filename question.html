@@ -37,7 +37,7 @@
 -->
 
 <small>Share room url: {{absurl}}</small> &nbsp;
-<a class="btn btn-default" href="/index.html">Main</a>
+<a class="btn btn-default" href="./index.html">Main</a>
 <button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
 
 <!-- after login -->
@@ -80,8 +80,10 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 		</h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
-		<p class="list-group-item-text"><span ng-bind-html="todo.desc"></span> description: {{todo.desc}} </br> created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}
-			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span> --></p>
+		<p class="list-group-item-text">
+            <span ng-bind-html="todo.desc">Description: {{todo.desc}}</span>
+            </br>Created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}</p>
+			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
 <!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
  -->
 
