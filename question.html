@@ -20,6 +20,7 @@
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
 	<link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" type="text/css" href="css/question.css">
 
 
 </head>
@@ -55,14 +56,13 @@
                 <input type="text" id="new-todo" class="form-control" placeholder="Title" ng-model="input.wholeMsg" autofocus>
 
                 <textarea type="text" id="new-todo2" class="form-control" placeholder="Search or Post Question" ng-model="input2.wholeMsg"></textarea>
-
             </div>
             
-
-
-            <span class="input-group-btn">
-            	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
-            </span>
+            <div class="ask-button-div">
+                <span class="input-group-btn" id="ask-button">
+                	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
+                </span>
+            </div>
         </div>
     </div>
 </div><!-- /input-group -->
