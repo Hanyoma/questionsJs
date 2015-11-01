@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en" ng-app="todomvc" scroll data-framework="firebase">
 <head>
 	<meta charset="utf-8">
@@ -19,7 +19,7 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
-	<link rel="stylesheet" href="main.css">
+	<link rel="stylesheet" href="css/main.css">
 
 
 </head>
@@ -47,7 +47,7 @@
 
 
 
-<div class="input-group">
+<div class="col-sm-1 input-group">
 	<!--
 	<form id="todo-form" ng-submit="addTodo()">
 -->
@@ -59,30 +59,29 @@ ng-model="input.wholeMsg" position.divleft></textarea>
 placeholder="Search or Post Question"
 ng-model="input2.wholeMsg" autofocus></textarea>
 
+<button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
 
-<span class="input-group-btn">
-	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
-</span>
 </div><!-- /input-group -->
 
 
 
 
 <div class="list-group" id="todo-list">
-	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
-		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
-			<span class="label label-danger" ng-show="todo.new">New</span>
-			<span class="badge">{{todo.echo}}</span>
-			<!-- switch -->
-			<span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
-			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
-			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
-		</h4>
+	<span class="list-group-item list-group-item-success " ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+        <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
+            <span class="label label-danger" ng-show="todo.new">New</span>
+            <span class="badge">{{todo.echo}}</span>
+            <!-- switch -->
+            <span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
+            <span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
+            <span ng-class="{completed: todo.completed}">{{todo.head}}</span>
+        </h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
-		<p class="list-group-item-text">
+        <h4 id="description" class="list-group-item-text">
             <span ng-bind-html="todo.desc">Description: {{todo.desc}}</span>
-            </br>Created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}</p>
+        </h4>
+        <h4 id="date" class="list-group-item-text text-right">Created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}</h4>
 			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
 <!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
  -->
