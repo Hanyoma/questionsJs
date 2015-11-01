@@ -266,4 +266,5 @@ angular.element($window).bind("scroll", function() {
 	}
 });
 
+
 }]);

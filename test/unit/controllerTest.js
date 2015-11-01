@@ -48,12 +48,12 @@ describe('TodoCtrl', function() {
 
 			var testInputs = [
 		{str:"Hello? This is Sung", exp: "Hello?"},
-			{str:"Hello.co? This is Sung", exp: "Hello.co?"},
-			{str:"Hello.co This is Sung", exp: "Hello.co This is Sung"},
-			{str:"Hello.co \nThis is Sung", exp: "Hello.co \n"},
+			{ str: "Hello.co? This is Sung", exp: "Hello.co? This is Sung" },
+			{ str: "Hello.co This is Sung", exp: "Hello.co This is Sung" },
+			{ str: "Hello.co \nThis is Sung", exp: "Hello.co \nThis is Sung" },
 
-			{str:"Hello?? This is Sung", exp: "Hello??"},
-			{str:"Hello? This. is? Not! Sung.", exp: "Hello?"},
+			{ str: "Hello?? This is Sung", exp: "Hello?? This is Sung" },
+			{ str: "Hello? This. is? Not! Sung.", exp: "Hello? This. is? Not! Sung." },
 			];
 
 		for (var i in testInputs) {
