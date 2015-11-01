@@ -47,7 +47,7 @@ describe('TodoCtrl', function() {
 			});
 
 			var testInputs = [
-		{str:"Hello? This is Sung", exp: "Hello?"},
+			{ str: "Hello? This is Sung", exp: "Hello? This is Sung"},
 			{ str: "Hello.co? This is Sung", exp: "Hello.co? This is Sung" },
 			{ str: "Hello.co This is Sung", exp: "Hello.co This is Sung" },
 			{ str: "Hello.co \nThis is Sung", exp: "Hello.co \nThis is Sung" },
@@ -120,17 +120,46 @@ describe('TodoCtrl', function() {
 			    $window: window
 			});
 
-			/*empty input*/
+			/*One empty input*/
 			scope.input = {
+				wholeMsg: ''
+			};
+			scope.input2 = {
+				wholeMsg: 'notEmpty'
+			};
+			scope.addTodo();
+			scope.$digest();
+			expect(scope.todos.length).toEqual(0);
+
+			/*Other empty input*/
+			scope.input = {
+				wholeMsg: 'notEmpty'
+			};
+			scope.input2 = {
 				wholeMsg: ''
 			};
 			scope.addTodo();
 			scope.$digest();
 			expect(scope.todos.length).toEqual(0);
 
-			/*Non-empty input - For some reason it does not add to todo array? Bug?*/
+			/* Two empty input*/
 			scope.input = {
-				wholeMsg: 'Why doesnt this work?'
+				wholeMsg: ''
+			};
+			scope.input2 ={
+				wholeMsg: ''
+			};
+			scope.addTodo();
+			scope.$digest();
+			expect(scope.todos.length).toEqual(0)
+		
+			
+			/* Non empty input*/
+			scope.input = {
+				wholeMsg: 'Title'
+			};
+			scope.input2 ={
+				wholeMsg: 'Desc'
 			};
 			scope.addTodo();
 			scope.$digest();

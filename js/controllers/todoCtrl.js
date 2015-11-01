@@ -102,7 +102,7 @@ $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
 	var newTodo2 = $scope.input2.wholeMsg.trim();
 	// No input, so just do nothing
-	if (!newTodo.length) {
+	if (!newTodo.length || !newTodo2.length) {
 		return;
 	}
 
