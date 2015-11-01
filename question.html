@@ -19,7 +19,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
+
 	<link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="css/question.css">
 
 
 </head>
@@ -44,6 +46,7 @@
 <img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
 {{$authData.facebook.displayName}}
 <button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
+
 
 
 
