@@ -101,10 +101,6 @@ $scope.getFirstAndRestSentence = function($string) {
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
 	var newTodo2 = $scope.input2.wholeMsg.trim();
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/jenny
 	// No input, so just do nothing
 	if (!newTodo.length || !newTodo2.length) {
 		return;
@@ -116,17 +112,10 @@ $scope.addTodo = function () {
 
 	$scope.todos.$add({
 		wholeMsg: newTodo + " " + newTodo2,
-<<<<<<< HEAD
 		desc: newTodo2,
 		head: head,
 		headLastChar: head.slice(-1),
 		// desc: desc,
-=======
-		desc: newTodo,
-		head: head,
-		headLastChar: head.slice(-1),
-		//desc: desc,
->>>>>>> origin/jenny
 		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
@@ -137,11 +126,7 @@ $scope.addTodo = function () {
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
-<<<<<<< HEAD
 	$scope.input2.wholeMsg = '';
-=======
-	$scope.input2.wholeMsg= '';
->>>>>>> origin/jenny
 };
 
 // $scope.addTodo2 = function () {

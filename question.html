@@ -62,14 +62,22 @@ ng-model="input.wholeMsg" position.divleft></textarea>
 placeholder="Search or Post Question"
 ng-model="input2.wholeMsg" autofocus></textarea>
 
+<<<<<<< HEAD
 <button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
 
+=======
+
+<span class="input-group-btn">
+	<button class="btn btn-default" type="button" ng-click="addTodo()">Ask</button>
+</span>
+>>>>>>> origin/jenny
 </div><!-- /input-group -->
 
 
 
 
 <div class="list-group" id="todo-list">
+<<<<<<< HEAD
 	<span class="list-group-item list-group-item-success " ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
         <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
             <span class="label label-danger" ng-show="todo.new">New</span>
@@ -88,6 +96,22 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
 <!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
  -->
+=======
+	<span class="list-group-item" ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
+		<h4 class="list-group-item-heading" ng-switch on="todo.headLastChar">
+			<span class="label label-danger" ng-show="todo.new">New</span>
+			<span class="badge">{{todo.echo}}</span>
+			<!-- switch -->
+			<span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
+			<span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
+			<span ng-class="{completed: todo.completed}">{{todo.head}}</span>
+		</h4>
+
+		<p class="list-group-item-text"><span ng-bind-html="todo.trustedDesc"></span> 
+			{{todo.desc}} <br>
+			created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}<br>
+			<span ng-show="todo.tags">tags: {{todo.tags}}</span></p>
+>>>>>>> origin/jenny
 
 			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>

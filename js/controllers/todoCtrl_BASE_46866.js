@@ -30,7 +30,8 @@ if (!roomId || roomId.length === 0) {
 	roomId = "all";
 }
 
-// DONE: Please change this URL for your app
+// TODO: Please change this URL for your app
+// var firebaseURL = "https://classquestion.firebaseio.com/";
 var firebaseURL = "https://intense-inferno-7677.firebaseio.com/";
 
 $scope.roomId = roomId;
@@ -63,7 +64,6 @@ $scope.$watchCollection('todos', function () {
 		// set time
 		todo.dateString = new Date(todo.timestamp);
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
-		// todo.body = todo.descrip.match(/#\w+/g);
 
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
 	});
@@ -79,7 +79,7 @@ $scope.$watchCollection('todos', function () {
 $scope.getFirstAndRestSentence = function($string) {
 	var head = $string;
 	var desc = "";
-/*
+
 	var separators = [". ", "? ", "! ", '\n'];
 
 	var firstIndex = -1;
@@ -94,19 +94,14 @@ $scope.getFirstAndRestSentence = function($string) {
 		head = $string.slice(0, firstIndex+1);
 		desc = $string.slice(firstIndex+1);
 	}
-*/
 	return [head, desc];
 };
 
 $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
-	var newTodo2 = $scope.input2.wholeMsg.trim();
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/jenny
 	// No input, so just do nothing
-	if (!newTodo.length || !newTodo2.length) {
+	if (!newTodo.length) {
 		return;
 	}
 
@@ -115,63 +110,20 @@ $scope.addTodo = function () {
 	var desc = firstAndLast[1];
 
 	$scope.todos.$add({
-		wholeMsg: newTodo + " " + newTodo2,
-<<<<<<< HEAD
-		desc: newTodo2,
+		wholeMsg: newTodo,
 		head: head,
 		headLastChar: head.slice(-1),
-		// desc: desc,
-=======
-		desc: newTodo,
-		head: head,
-		headLastChar: head.slice(-1),
-		//desc: desc,
->>>>>>> origin/jenny
+		desc: desc,
 		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
 		tags: "...",
-		
 		echo: 0,
 		order: 0
 	});
 	// remove the posted question in the input
 	$scope.input.wholeMsg = '';
-<<<<<<< HEAD
-	$scope.input2.wholeMsg = '';
-=======
-	$scope.input2.wholeMsg= '';
->>>>>>> origin/jenny
 };
-
-// $scope.addTodo2 = function () {
-// 	var newTodo = $scope.input.wholeMsg.trim();
-// 	// var newTodo = $scope.input.wholeMsg.trim();
-// 	// No input, so just do nothing
-// 	if (!newTodo.length) {
-// 		return;
-// 	}
-
-// 	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
-// 	var head = firstAndLast[0];
-// 	var desc = firstAndLast[1];
-
-// 	$scope.todos.$add({
-// 		wholeMsg: newTodo,
-// 		head: head,
-// 		headLastChar: head.slice(-1),
-// 		desc: desc,
-// 		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
-// 		completed: false,
-// 		timestamp: new Date().getTime(),
-// 		tags: "...",
-// 		echo: 0,
-// 		order: 0
-// 	});
-// 	// remove the posted question in the input
-// 	$scope.input.wholeMsg = '';
-// };
-
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
@@ -280,6 +232,5 @@ angular.element($window).bind("scroll", function() {
 		$scope.$apply();
 	}
 });
-
 
 }]);
