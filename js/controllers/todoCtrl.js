@@ -65,6 +65,13 @@ $scope.$watchCollection('todos', function () {
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 		// todo.body = todo.descrip.match(/#\w+/g);
 
+        todo.replies.forEach(function (reply) {
+            if (!reply ) {
+                return;
+            }
+            reply.dateString = new Date(reply.timestamp);
+        });
+        
 		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
 	});
 
@@ -106,21 +113,22 @@ $scope.addTodo = function () {
 		return;
 	}
 
-	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
-	var head = firstAndLast[0];
-	var desc = firstAndLast[1];
+	// var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
+	// var head = firstAndLast[0];
+	// var desc = firstAndLast[1];
 
 	$scope.todos.$add({
 		wholeMsg: newTodo + " " + newTodo2,
 		desc: newTodo2,
-		head: head,
+		head: newTodo,
 		headLastChar: head.slice(-1),
-		// desc: desc,
-		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
+        newQuestion: false,
+		// linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
-		tags: "...",
-		
+		// tags: "...",
+        replies: null,
+        numberOfReplies: 0,
 		echo: 0,
 		order: 0
 	});
@@ -212,7 +220,40 @@ $scope.markAll = function (allCompleted) {
 		$scope.todos.$save(todo);
 	});
 };
-
+ 
+//  START OF REPLY
+ 
+$scope.addReply = function (todo) {
+    if (todo.replies == null || todo.numberOfReplies==0) {
+        var echoRef = new Firebase(url);
+        var query = echoRef.orderByChild("order");
+        // Should we limit?
+        //.limitToFirst(1000);
+        $scope.replies = todo.replies.$asArray;
+ 
+    }
+ 
+ $scope.replies = todo.replies.$asArray;
+ 
+    //console.log(todo.url);
+	var newReply = $scope.input.wholeMsg.trim();
+	// No input, so just do nothing
+	if (!newReply.length) {
+        return;
+	}
+ 
+	todo.replies.$add({
+        wholeMsg: newReply,
+        timestamp: new Date().getTime(),
+        echo: 0,
+        order: 0
+    });
+	// remove the posted question in the input
+	$scope.input.wholeMsg = '';
+};
+ 
+//  END OF REPLY
+ 
 $scope.FBLogin = function () {
 	var ref = new Firebase(firebaseURL);
 	ref.authWithOAuthPopup("facebook", function(error, authData) {
@@ -241,7 +282,7 @@ $scope.increaseMax = function () {
 	}
 };
 
-$scope.toTop =function toTop() {
+$scope.toTop = function toTop() {
 	$window.scrollTo(0,0);
 };
 

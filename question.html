@@ -68,7 +68,6 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 
 
 
-
 <div class="list-group" id="todo-list">
 	<span class="list-group-item list-group-item-success " ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
         <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
@@ -93,17 +92,38 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
 			&nbsp;
 			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
+            
+            <!-- replies -->
+            <span class="repliesbox" ng-repeat="reply in todo.replies">
+                <h4 id="replies" class="list-group-item-text">
+                    <span class="badge">{{todo.echo}}</span>
+                    <span ng-bind-html="reply.wholeMsg">Description: {{reply.wholeMsg}}</span>
+                </h4>
+                <h4 id="date" class="list-group-item-text text-right">Created: {{reply.dateString | date: 'EEE MMM d, y h:mm a'}}</h4>
+                <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+            </span>
+            <!-- replies -->
+            
+            <!-- Added a reply input -->
+            <div class="input-group" ng-attr-id="{{ 'replybox-' + $index }}" style="visibility:visible">
+                <textarea type="text" id="new-reply" class="form-control"
+                    placeholder="reply"
+                    ng-model="input.wholeMsg" autofocus></textarea>
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" ng-click="addReply(todo)">Reply</button>
+                </span>
+            </div><!-- /reply-group -->
 		</span>
 	</div>
 
-	<!--
 
+	<!--
 	<div id="toTop" class="btn btn-info"><span class="fa fa-arrow-up">Back to Top</span></div>
 
 	<button ng-hide="totalCount<=maxQuestion"
 	class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
 	type="button" ng-click="increaseMax()"> Show more</button>
--->
+    -->
 
 
 
