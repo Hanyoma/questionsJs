@@ -31,7 +31,7 @@ if (!roomId || roomId.length === 0) {
 }
 
 // DONE: Please change this URL for your app
-var firebaseURL = "https://blinding-inferno-3397.firebaseio.com/";
+var firebaseURL = "https://intense-inferno-7677.firebaseio.com/";
 
 $scope.roomId = roomId;
 var url = firebaseURL + roomId + "/questions/";
@@ -169,9 +169,10 @@ $scope.addPoll = function () {
         linkedDesc: Autolinker.link(desc, { newWindow: false, stripPrefix: false }),
         completed: false,
         timestamp: new Date().getTime(),
-        tags: "...",
+        // tags: "...",
         polloption: $scope.todos2,
         totalpollvotes: 0,
+        numberOfReplies: 0,
 
         echo: 0,
         order: 0
@@ -280,7 +281,9 @@ $scope.addReply = function (todo,input4) {
 	// Increment number of replies counter
 	todo.numberOfReplies = todo.numberOfReplies+1;
 	delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
+	console.log("here3");
 	$scope.todos.$save(todo);
+	console.log("here4");
 
  	theReplies.$add({
     wholeMsg: newReply,
@@ -288,6 +291,7 @@ $scope.addReply = function (todo,input4) {
     echo: 0,
     order: 0
     });
+
 
 	// remove the posted question in the input
 	// TODO THIS DOES NOT WORK YET
