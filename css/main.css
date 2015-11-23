@@ -25,6 +25,14 @@
     background-color: #c7dfbe;
     margin-left: 50px;
     margin-right: 50px;
+    margin-bottom: 10px;
+}
+
+.replyContainerInner {
+  padding-top:2px;
+  padding-bottom:8px;
+  padding-left:12px;
+  padding-right:12px;
 }
 
 .list-group1 {
@@ -110,7 +118,8 @@
 }*/
 
 .list-group1 .thePollVoting {
-  max-width: 300px;
+  /*max-width: 100%;*/
+  display: inline-block;
 }
 
 .list-group1 .list-group {
@@ -127,9 +136,18 @@
   /*height: 10px;*/
 }
 
+.list-group1 .radio {
+  margin-top: 5px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
 .list-group1 .panel-body ul li  {
-  height: 40px;
+  /*height: 40px;*/
   padding-top: 0px;
+  /*display: inline-block;*/
+  margin: 0px;
 }
 
 .list-group1 .panel-footer
@@ -140,6 +158,7 @@
 }
 
 .replyInputField div {
+    padding-top: 10px;
     padding-left: 50px;
     width:600px;
 }
@@ -155,6 +174,7 @@
 .list-group1 .list-group-item-text {
   margin-left:18px;
 }
+
 
 .list-group .list-group-item .list-group-item-text#description{
     font-size: 15px;

@@ -109,12 +109,13 @@
 	<span class="list-group-item list-group-item-success " ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
         <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
             <span class="label label-danger" ng-show="todo.new">New</span>
-            <span class="badge">{{todo.echo}}</span>
-            <span class="badge" >{{todo.numberOfReplies}}</span>
             <!-- switch -->
             <span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
             <span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
-            <span ng-class="{completed: todo.completed}">{{todo.head}}</span>        </h4>
+            <span ng-class="{completed: todo.completed}">{{todo.head}}    </span>
+            <span class="badge">Votes: {{todo.echo}}</span>
+            <span class="badge">Replies: {{todo.numberOfReplies}}</span>
+        </h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
         <div ng-if="todo.desc">
@@ -130,7 +131,7 @@
                                 <div class="radio">
                                     <label>
                                         <input type="radio" name="optionsRadios" id="{{todo2.name}}">
-                                        {{todo2.name}} {{todo2.numberofvote}}
+                                        {{todo2.name}}<br>Number of votes: {{todo2.numberofvote}}
                                     </label>
                                 </div>
                             </li>
@@ -160,13 +161,16 @@
 
             <!-- replies -->
             <span class="repliesbox" ng-repeat="reply in todo.replies">
-                <div class="replyContainer"> <h4> Reply: </h4>
+                <div class="replyContainer"> 
+                <div class="replyContainerInner">
+                <h4> Reply: </h4>
                 <h4 id="replies" class="list-group-item-text">
                     <!-- <span class="badge">{{todo.echo}}</span> -->
                     <span ng-bind-html="reply.wholeMsg">{{reply.wholeMsg}}</span>
                 </h4>
                 <h4 id="date" class="list-group-item-text text-right">Created: {{reply.timestamp | date: 'EEE MMM d, y h:mm a'}}</h4>
                 <!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
+                </div>
                 </div>
             </span>
             <!-- replies -->
