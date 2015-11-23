@@ -294,7 +294,7 @@ $scope.addReply = function (todo,input4) {
 
 	// remove the posted question in the input
 	// TODO THIS DOES NOT WORK YET
-	input4.reply = '';
+	input4.wholeMsg = '';
 };
  
 //  END OF REPLY
