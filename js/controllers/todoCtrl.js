@@ -217,6 +217,7 @@ $scope.doneEditing = function (todo) {
 	$scope.editedTodo = null;
 	var wholeMsg = todo.wholeMsg.trim();
 	if (wholeMsg) {
+		delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
 		$scope.todos.$save(todo);
 	} else {
 		$scope.removeTodo(todo);
@@ -252,12 +253,14 @@ $scope.clearCompletedTodos2 = function () {
 
 $scope.toggleCompleted = function (todo) {
 	todo.completed = !todo.completed;
+	delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
 	$scope.todos.$save(todo);
 };
 
 $scope.markAll = function (allCompleted) {
 	$scope.todos.forEach(function (todo) {
 		todo.completed = allCompleted;
+		delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
 		$scope.todos.$save(todo);
 	});
 };
@@ -334,6 +337,7 @@ $scope.addonevote = function (todo) {
         todo.pollOptions.forEach(function (todo2) {
             if (document.getElementById(todo2.pollString).checked) { todo2.votes += 1; todo.totalPollVotes += 1; }
         });
+        delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
         $scope.todos.$save(todo);
 
         // $scope.$storage[todo.$id2] = "voted"
