@@ -113,8 +113,8 @@
             <span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
             <span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
             <span ng-class="{completed: todo.completed}">{{todo.head}}    </span>
-            <span class="badge">Votes: {{todo.echo}}</span>
-            <span class="badge">Replies: {{todo.numberOfReplies}}</span>
+            <span class="badge">{{todo.echo}} Likes</span>
+            <span class="badge">{{todo.numberOfReplies}} Replies</span>
         </h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
