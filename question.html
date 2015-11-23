@@ -68,7 +68,7 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 
 
 
-<div class="list-group" id="todo-list">
+<div class="list-group1" id="todo-list">
 	<span class="list-group-item list-group-item-success " ng-repeat="todo in todos | filter:input | questionFilter:maxQuestion" ng-class="{completed: todo.completed, editing: todo == editedTodo}">
         <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
             <span class="label label-danger" ng-show="todo.new">New</span>
@@ -109,7 +109,7 @@ ng-model="input2.wholeMsg" autofocus></textarea>
                 <textarea type="text" id="new-reply" class="form-control"
                     placeholder="reply" ng-model="input3.wholeMsg"></textarea>
                 <span class="input-group-btn">
-                    <button class="btn btn-default" type="button" ng-click="addReply(todo)">Reply</button>
+                    <button class="btn btn-default" type="button" ng-click="addReply(todo,input3)">Reply</button>
                 </span>
             </div><!-- /reply-group -->
 		</span>

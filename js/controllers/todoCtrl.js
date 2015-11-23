@@ -178,6 +178,7 @@ $scope.addEcho = function (todo) {
 	todo.echo = todo.echo + 1;
 	// Hack to order using this order.
 	todo.order = todo.order -1;
+	delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
 	$scope.todos.$save(todo);
 
 	// Disable the button
@@ -225,36 +226,34 @@ $scope.markAll = function (allCompleted) {
  
 //  START OF REPLY
  
-$scope.addReply = function (todo) {
-    if (todo.replies == null || todo.numberOfReplies==0) {
-        var echoRef = new Firebase(url);
-        var query = echoRef.orderByChild("order");
-        // Should we limit?
-        //.limitToFirst(1000);
-        $scope.replies = todo.replies.$asArray;
-    }
-    $scope.editedTodo = todo;
- 
-    // $scope.replying = $firebaseArray(todo.replies);
- 
-    //console.log(todo.url);
-	var newReply = $scope.input3.wholeMsg.trim();
+$scope.addReply = function (todo,input3) {
+	var url = firebaseURL + roomId + "/questions/" + todo.$id + "/replies/";
+	var echoRef = new Firebase(url);
+	var theReplies = $firebaseArray(echoRef);
+
+	var newReply = input3.wholeMsg.trim();
  
 	// No input, so just do nothing
 	if (!newReply.length) {
         return;
 	}
- 
-	todo.replies.$add({
-        wholeMsg: newReply,
-        timestamp: new Date().getTime(),
-        echo: 0,
-        order: 0
+
+	// Increment number of replies counter
+	console.log('type is: '+typeof todo)
+	todo.numberOfReplies = todo.numberOfReplies+1;
+	delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
+	$scope.todos.$save(todo);
+
+ 	theReplies.$add({
+    wholeMsg: newReply,
+    timestamp: new Date().getTime(),
+    echo: 0,
+    order: 0
     });
+
 	// remove the posted question in the input
-	$scope.input.reply = '';
- 
-    $scope.todos.$save(todo);
+	// TODO THIS DOES NOT WORK YET
+	// $scope.input3.reply = '';
 };
  
 //  END OF REPLY
