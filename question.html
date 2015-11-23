@@ -123,36 +123,41 @@
             </h4>
         </div>
         <div ng-if="!todo.desc">
-            <div class="panel-heading">
-            </div>
-            <div class="panel-body">
-                <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="todo2 in todo.polloption">
-                        <div class="radio">
-                            <label>
-                                <input type="radio" name="optionsRadios" id="{{todo2.name}}">
-                                {{todo2.name}} {{todo2.numberofvote}}
-                            </label>
+            <div class="thePollVoting">
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item" ng-repeat="todo2 in todo.polloption">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="optionsRadios" id="{{todo2.name}}">
+                                        {{todo2.name}} {{todo2.numberofvote}}
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-footer-container">
+                        <div class="panel-footer">
+                            <button type="button" ng-click ="addonevote(todo) " class="btn btn-primary btn-sm">Vote</button>
                         </div>
-                    </li>
-                </ul>
-            </div>
-            <div class="panel-footer">
-                <button type="button" ng-click ="addonevote(todo) " class="btn btn-primary btn-sm">
-                    Vote
-                </button>
+                    </div>
             </div>
         </div>
-        <h4 id="date" class="list-group-item-text text-right">Created: {{todo.timestamp | date: 'EEE MMM d, y h:mm a'}}</h4>
-			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
-<!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
- -->
 
-			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
-			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
-			&nbsp;
-			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
-            
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6">
+        			<button class="btn btn-default btn-xs glyphicon glyphicon-hand-up text-right" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+        			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-check" ng-click="toggleCompleted(todo)">Toggle Completed</button>
+        			&nbsp;
+        			<button ng-show="isAdmin" class="btn btn-default btn-xs glyphicon glyphicon-trash" aria-hidden="true" ng-click="removeTodo(todo)">Del</button>
+                </div>
+                <div class="col-sm-6">
+                    <h4 id="date" class="list-group-item-text text-right">Created: {{todo.timestamp | date: 'EEE MMM d, y h:mm a'}}</h4>
+                </div>
+            </div>
+        </div>
+
             <!-- replies -->
             <span class="repliesbox" ng-repeat="reply in todo.replies">
                 <div class="replyContainer"> <h4> Reply: </h4>
@@ -178,19 +183,6 @@
             </div>
 		</span>
 	</div>
-
-	<!--
- 
-=======
->>>>>>> origin/gh-pages
-
-	<!--
-	<div id="toTop" class="btn btn-info"><span class="fa fa-arrow-up">Back to Top</span></div>
-
-	<button ng-hide="totalCount<=maxQuestion"
-	class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
-	type="button" ng-click="increaseMax()"> Show more</button>
-    -->
 
 
 <div class="footer">

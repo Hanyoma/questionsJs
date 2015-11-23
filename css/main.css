@@ -109,7 +109,35 @@
     border-radius: 0;
 }*/
 
+.list-group1 .thePollVoting {
+  max-width: 300px;
+}
 
+.list-group1 .list-group {
+  margin-bottom: 0px;
+}
+
+.list-group1 .panel-body {
+  margin-top: 0px;
+  padding-bottom: 0px;
+}
+
+.list-group1 .panel-body ul  {
+  list-style: none;
+  /*height: 10px;*/
+}
+
+.list-group1 .panel-body ul li  {
+  height: 40px;
+  padding-top: 0px;
+}
+
+.list-group1 .panel-footer
+{
+  background-color: transparent;
+  border: none;
+  padding-left: 20px;
+}
 
 .replyInputField div {
     padding-left: 50px;
@@ -124,6 +152,9 @@
     margin-bottom: 20px;
 }
 
+.list-group1 .list-group-item-text {
+  margin-left:18px;
+}
 
 .list-group .list-group-item .list-group-item-text#description{
     font-size: 15px;
