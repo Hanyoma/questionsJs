@@ -173,7 +173,6 @@ $scope.addPoll = function () {
         polloption: $scope.todos2,
         totalpollvotes: 0,
         numberOfReplies: 0,
-
         echo: 0,
         order: 0
     });
