@@ -72,7 +72,7 @@ $scope.$watchCollection('todos', function () {
             reply.dateString = new Date(reply.timestamp);
         });
         
-		todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
+		// todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
 	});
 
 	$scope.totalCount = total;
@@ -113,17 +113,19 @@ $scope.addTodo = function () {
 		return;
 	}
 
-	// var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
-	// var head = firstAndLast[0];
-	// var desc = firstAndLast[1];
+	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
+	var head = firstAndLast[0];
+    var desc = firstAndLast[1];
 
 	$scope.todos.$add({
 		wholeMsg: newTodo + " " + newTodo2,
 		desc: newTodo2,
-		head: newTodo,
+		// head: newTodo,
+        // desc: desc,
+        head: head,
 		headLastChar: head.slice(-1),
         newQuestion: false,
-		// linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
+		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
 		// tags: "...",
@@ -230,13 +232,13 @@ $scope.addReply = function (todo) {
         // Should we limit?
         //.limitToFirst(1000);
         $scope.replies = todo.replies.$asArray;
- 
     }
+    $scope.editedTodo = todo;
  
- $scope.replies = todo.replies.$asArray;
+    // $scope.replying = $firebaseArray(todo.replies);
  
     //console.log(todo.url);
-	var newReply = $scope.input.wholeMsg.trim();
+	var newReply = $scope.input.reply.trim();
 	// No input, so just do nothing
 	if (!newReply.length) {
         return;
@@ -249,7 +251,9 @@ $scope.addReply = function (todo) {
         order: 0
     });
 	// remove the posted question in the input
-	$scope.input.wholeMsg = '';
+	$scope.input.reply = '';
+ 
+    $scope.todos.$save(todo);
 };
  
 //  END OF REPLY

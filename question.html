@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en" ng-app="todomvc" scroll data-framework="firebase">
 <head>
 	<meta charset="utf-8">
@@ -108,7 +108,7 @@ ng-model="input2.wholeMsg" autofocus></textarea>
             <div class="input-group" ng-attr-id="{{ 'replybox-' + $index }}" style="visibility:visible">
                 <textarea type="text" id="new-reply" class="form-control"
                     placeholder="reply"
-                    ng-model="input.wholeMsg" autofocus></textarea>
+                    ng-model="input.reply"></textarea>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="addReply(todo)">Reply</button>
                 </span>
