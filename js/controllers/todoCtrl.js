@@ -266,11 +266,11 @@ $scope.markAll = function (allCompleted) {
  
 //  START OF REPLY
  
-$scope.addReply = function (todo,input3) {
+$scope.addReply = function (todo,input4) {
 	var url = firebaseURL + roomId + "/questions/" + todo.$id + "/replies/";
 	var echoRef = new Firebase(url);
 	var theReplies = $firebaseArray(echoRef);
-	var newReply = input3.wholeMsg.trim();
+	var newReply = input4.wholeMsg.trim();
  
 	// No input, so just do nothing
 	if (!newReply.length) {
@@ -291,7 +291,7 @@ $scope.addReply = function (todo,input3) {
 
 	// remove the posted question in the input
 	// TODO THIS DOES NOT WORK YET
-	// $scope.input3.reply = '';
+	// $scope.input4.reply = '';
 };
  
 //  END OF REPLY
