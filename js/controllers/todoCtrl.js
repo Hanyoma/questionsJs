@@ -238,7 +238,8 @@ $scope.addReply = function (todo) {
     // $scope.replying = $firebaseArray(todo.replies);
  
     //console.log(todo.url);
-	var newReply = $scope.input.reply.trim();
+	var newReply = $scope.input3.wholeMsg.trim();
+ 
 	// No input, so just do nothing
 	if (!newReply.length) {
         return;
