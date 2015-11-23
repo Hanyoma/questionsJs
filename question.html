@@ -21,15 +21,28 @@
 	<!-- need this for comlted ones. TODO: can I do this in bootstrap -->
 
 	<link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" type="text/css" href="css/question.css">
+    <!-- <link rel="stylesheet" type="text/css" href="css/question.css"> -->
 
 
 </head>
 <body ng-controller="TodoCtrl">
 	
-    <div id="title">
-		<font size="10">Questions for {{roomId}}?</font>&nbsp;
-	</div>
+    <div id="title" class="header">
+        <div class="container-fluid">
+        <div class="row">
+            <!-- <div class="col-sm-6"> -->
+            <div class="leftheader">
+        		<font size="10">Questions for {{roomId}}?</font>
+            <!-- </div> -->
+            </div>
+            <!-- <div class="col-sm-6"> -->
+            <div class="rightheader">
+                <a class="btn btn-default" href="./index.html">Main</a>
+            <!-- </div> -->
+            </div>
+        </div>
+    	</div>
+    </div>
 	<!--
 
 	<a ng-class="{selected: location.path() == '/newechos'}" class="btn btn-primary" href="#/newechos">New Echos</a>
@@ -38,49 +51,58 @@
 	<a ng-class="{selected: location.path() == '/about'}" class="btn btn-warning" href="#/about">About</a>
 -->
 
-<small>Share room url: {{absurl}}</small> &nbsp;
-<a class="btn btn-default" href="./index.html">Main</a>
-<button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
-
-<!-- after login -->
-<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
-{{$authData.facebook.displayName}}
-<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
 
 
+<div class="container-fluid input-container">
+<div class="row">
+    <div class="col-sm-6">
+        <h3>Post a new question:</h2>
+        <div class="input-group1">
+        <form id="todo-form" ng-submit="addTodo()">
+        <textarea type="text" id="new-todo" class="form-control"
+        placeholder="Title or Search"
+        ng-model="input.wholeMsg" position.divleft></textarea>
 
+        <textarea type="text" id="new-todo2" class="form-control"
+        placeholder="Type your question"
+        ng-model="input2.wholeMsg" autofocus></textarea>
 
-<div class="col-sm-1 input-group">
-	<!--
-	<form id="todo-form" ng-submit="addTodo()">
--->
-<textarea type="text" id="new-todo" class="form-control"
-placeholder="Title or Search"
-ng-model="input.wholeMsg" position.divleft></textarea>
+        <button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
 
-<textarea type="text" id="new-todo2" class="form-control"
-placeholder="Type your question"
-ng-model="input2.wholeMsg" autofocus></textarea>
+        </div>
+    </div>
 
-<button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
-
-</div><!-- /input-group -->
-
-<div class="input-group2">
-        <!--
-            <form id="todo-form" ng-submit="addTodo()">
-        -->
-        <textarea type="text" id="new-todo1" class="form-control"
-                  placeholder="Title"
-                  ng-model="input1.wholeMsg" position.divleft></textarea>
-        <textarea type="text" id="new-todo3" class="form-control"
-              placeholder="AddPollOpinion"
-              ng-model="input3.wholeMsg" position.divleft></textarea>
-
-        <button class="btn btn-info" type="button" ng-click="addPollOption()">AddPollOption</button>
-        <button class="btn btn-info" type="button" ng-click="addPoll()">Raise A Poll</button>
-
-</div><!-- /input-group -->
+    <div class="col-sm-6">
+        <h3>Post a poll:</h2>
+        <div class="input-group2">
+        <div class="row">
+        <div class="col-sm-6">
+            <div class="leftside">
+                <form id="todo-form" ng-submit="addTodo()">
+                <textarea type="text" id="new-todo1" class="form-control"
+                          placeholder="Title"
+                          ng-model="input1.wholeMsg" position.divleft></textarea>
+                <textarea type="text" id="new-todo3" class="form-control"
+                      placeholder="New Poll Option"
+                      ng-model="input3.wholeMsg" position.divleft></textarea>
+                <button class="btn btn-info" type="button" ng-click="addPollOption()">Add This Option</button>
+                <button class="btn btn-info" type="button" ng-click="addPoll()">Raise A Poll</button>
+            </div>
+            </div>
+            <div class="col-sm-6">
+            <div class="rightside">
+                <p>Currently added poll options:</p>
+                <span class="pollOptionsDisplay" ng-repeat="pollOption in todos2">
+                    <p class="list-group-item-text" ng-bind-html="pollOption.name">{{pollOption.name}}</p>
+                </span>
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- /input-group -->
 
 
 <div class="list-group1" id="todo-list">
@@ -169,6 +191,16 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 	class="pull-right btn btn-default glyphicon glyphicon-arrow-down"
 	type="button" ng-click="increaseMax()"> Show more</button>
     -->
+
+
+<div class="footer">
+    <small>Share room url: {{absurl}}</small> <br>
+    <button ng-hide="$authData" class="btn btn-primary left" type="button" ng-click="FBLogin()">Want Admin? Sign in with Facebook</button>
+</div>
+<!-- after login -->
+<img ng-show="$authData" src="https://graph.facebook.com/{{$authData.facebook.id}}/picture/?type=square&return_ssl_resources=1" alt="{{name}}" />
+{{$authData.facebook.displayName}}
+<button ng-show="$authData" class="btn btn-primary left" type="button" ng-click="FBLogout()">Logout</button>
 
 
 

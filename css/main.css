@@ -1,4 +1,69 @@
-.input-group .form-control#new-todo {
+.header {
+    margin: 30px;
+}
+
+.header .container {
+    background-color: red;
+}
+
+.header .leftheader {
+    float: left;
+}
+.header .rightheader {
+    padding-top:15px;
+    float: right;
+}
+
+.input-container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 150px;
+  margin-right: 150px;
+}
+
+.replyContainer {
+    background-color: #c7dfbe;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.list-group1 {
+    margin-left: 150px;
+    margin-right: 150px;
+}
+
+.input-group1 {
+    max-width: 400px;
+}
+
+.input-group1 .form-control#new-todo {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height:40px;
+}
+
+.input-group1 .form-control#new-todo2 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /*width: 600px;*/
+    height:150px;
+}
+
+.input-group2 .form-control#new-todo1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height:40px;
+}
+
+.input-group2 .form-control#new-todo3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height:40px;
+}
+
+
+
+/*.input-group .form-control#new-todo {
     margin-top: 5px;
     width: 600px;
     height: 40px;
@@ -42,6 +107,21 @@
 .input-group2 .btn {
     margin-bottom: 5px;
     border-radius: 0;
+}*/
+
+
+
+.replyInputField div {
+    padding-left: 50px;
+    width:600px;
+}
+
+
+.footer {
+    margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
 }
 
 
