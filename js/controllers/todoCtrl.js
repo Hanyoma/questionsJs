@@ -336,6 +336,8 @@ $scope.addonevote = function (todo) {
         });
         $scope.todos.$save(todo);
 
+        $scope.$storage[todo.$id2] = "voted"
+
     }
 
 };
