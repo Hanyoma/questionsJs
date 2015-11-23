@@ -110,11 +110,11 @@
         <h4 id="heading" class="list-group-item-text" ng-switch on="todo.headLastChar">
             <span class="label label-danger" ng-show="todo.new">New</span>
             <span class="badge">{{todo.echo}}</span>
+            <span class="badge" >{{todo.numberOfReplies}}</span>
             <!-- switch -->
             <span ng-switch-when="?" class="glyphicon glyphicon-question-sign"></span>
             <span ng-switch-when="!" class="glyphicon glyphicon-ice-lolly"></span>
-            <span ng-class="{completed: todo.completed}">{{todo.head}}</span>
-        </h4>
+            <span ng-class="{completed: todo.completed}">{{todo.head}}</span>        </h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
         <div ng-if="todo.desc">
