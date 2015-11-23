@@ -93,7 +93,7 @@
             <div class="rightside">
                 <p>Currently added poll options:</p>
                 <span class="pollOptionsDisplay" ng-repeat="pollOption in todos2">
-                    <p class="list-group-item-text" ng-bind-html="pollOption.name">{{pollOption.name}}</p>
+                    <p class="list-group-item-text" ng-bind-html="pollOption.pollString">{{pollOption.pollString}}</p>
                 </span>
             </div>
             </div>
@@ -127,11 +127,11 @@
             <div class="thePollVoting">
                     <div class="panel-body">
                         <ul class="list-group">
-                            <li class="list-group-item" ng-repeat="todo2 in todo.polloption">
+                            <li class="list-group-item" ng-repeat="todo2 in todo.pollOptions">
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="{{todo2.name}}">
-                                        {{todo2.name}}<br>Number of votes: {{todo2.numberofvote}}
+                                        <input type="radio" name="optionsRadios" id="{{todo2.pollString}}">
+                                        {{todo2.pollString}}<br>Number of votes: {{todo2.votes}}
                                     </label>
                                 </div>
                             </li>

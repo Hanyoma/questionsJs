@@ -132,14 +132,12 @@ $scope.addTodo = function () {
         head: head,
 		headLastChar: head.slice(-1),
         newQuestion: false,
-		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
+		// linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
 		completed: false,
 		timestamp: new Date().getTime(),
-		tags: "...",
-		polloption: null,
-        totalpollvotes: 0,
-
 		// tags: "...",
+		pollOptions: null,
+        totalPollVotes: 0,
         replies: null,
         numberOfReplies: 0,
 		echo: 0,
@@ -166,12 +164,12 @@ $scope.addPoll = function () {
         head: head,
         headLastChar: head.slice(-1),
         // desc: desc,
-        linkedDesc: Autolinker.link(desc, { newWindow: false, stripPrefix: false }),
+        // linkedDesc: Autolinker.link(desc, { newWindow: false, stripPrefix: false }),
         completed: false,
         timestamp: new Date().getTime(),
         // tags: "...",
-        polloption: $scope.todos2,
-        totalpollvotes: 0,
+        pollOptions: $scope.todos2,
+        totalPollVotes: 0,
         numberOfReplies: 0,
         echo: 0,
         order: 0
@@ -192,8 +190,8 @@ $scope.addPollOption = function () {
     }
 
     $scope.todos2.$add({
-        name: newPollOption,
-        numberofvote: 0,});
+        pollString: newPollOption,
+        votes: 0,});
     $scope.input3.wholeMsg = '';
 
 }
@@ -332,9 +330,9 @@ $scope.toTop = function toTop() {
 };
 
 $scope.addonevote = function (todo) {
-    if (todo.polloption != null) {
-        todo.polloption.forEach(function (todo2) {
-            if (document.getElementById(todo2.name).checked) { todo2.numberofvote += 1; todo.totalpollvotes += 1; }
+    if (todo.pollOptions != null) {
+        todo.pollOptions.forEach(function (todo2) {
+            if (document.getElementById(todo2.pollString).checked) { todo2.votes += 1; todo.totalPollVotes += 1; }
         });
         $scope.todos.$save(todo);
 
