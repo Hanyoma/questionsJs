@@ -61,16 +61,17 @@ $scope.$watchCollection('todos', function () {
 		}
 
 		// set time
-		todo.dateString = new Date(todo.timestamp);
+		
+		// todo.dateString = new Date(todo.timestamp); // Not needed anymore. We can format timestamp directly
 		todo.tags = todo.wholeMsg.match(/#\w+/g);
 		// todo.body = todo.descrip.match(/#\w+/g);
 
-        todo.replies.forEach(function (reply) {
-            if (!reply ) {
-                return;
-            }
-            reply.dateString = new Date(reply.timestamp);
-        });
+        // todo.replies.forEach(function (reply) {
+        //     if (!reply ) {
+        //         return;
+        //     }
+        //     reply.dateString = new Date(reply.timestamp);
+        // });
         
 		// todo.trustedDesc = $sce.trustAsHtml(todo.linkedDesc);
 	});
@@ -230,7 +231,6 @@ $scope.addReply = function (todo,input3) {
 	var url = firebaseURL + roomId + "/questions/" + todo.$id + "/replies/";
 	var echoRef = new Firebase(url);
 	var theReplies = $firebaseArray(echoRef);
-
 	var newReply = input3.wholeMsg.trim();
  
 	// No input, so just do nothing
@@ -239,7 +239,6 @@ $scope.addReply = function (todo,input3) {
 	}
 
 	// Increment number of replies counter
-	console.log('type is: '+typeof todo)
 	todo.numberOfReplies = todo.numberOfReplies+1;
 	delete todo.new; // Hacky... I don't exactly know where this member "new" was added to todo
 	$scope.todos.$save(todo);

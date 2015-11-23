@@ -55,11 +55,11 @@
 	<form id="todo-form" ng-submit="addTodo()">
 -->
 <textarea type="text" id="new-todo" class="form-control"
-placeholder="Title"
+placeholder="Title or Search"
 ng-model="input.wholeMsg" position.divleft></textarea>
 
 <textarea type="text" id="new-todo2" class="form-control"
-placeholder="Search or Post Question"
+placeholder="Type your question"
 ng-model="input2.wholeMsg" autofocus></textarea>
 
 <button class="btn btn-info" type="button" ng-click="addTodo()">Ask</button>
@@ -83,7 +83,7 @@ ng-model="input2.wholeMsg" autofocus></textarea>
         <h4 id="description" class="list-group-item-text">
             <span ng-bind-html="todo.desc">Description: {{todo.desc}}</span>
         </h4>
-        <h4 id="date" class="list-group-item-text text-right">Created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}</h4>
+        <h4 id="date" class="list-group-item-text text-right">Created: {{todo.timestamp | date: 'EEE MMM d, y h:mm a'}}</h4>
 			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
 <!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
  -->
@@ -95,23 +95,27 @@ ng-model="input2.wholeMsg" autofocus></textarea>
             
             <!-- replies -->
             <span class="repliesbox" ng-repeat="reply in todo.replies">
+                <div class="replyContainer"> <h4> Reply: </h4>
                 <h4 id="replies" class="list-group-item-text">
-                    <span class="badge">{{todo.echo}}</span>
-                    <span ng-bind-html="reply.wholeMsg">Description: {{reply.wholeMsg}}</span>
+                    <!-- <span class="badge">{{todo.echo}}</span> -->
+                    <span ng-bind-html="reply.wholeMsg">{{reply.wholeMsg}}</span>
                 </h4>
-                <h4 id="date" class="list-group-item-text text-right">Created: {{reply.dateString | date: 'EEE MMM d, y h:mm a'}}</h4>
-                <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button>
+                <h4 id="date" class="list-group-item-text text-right">Created: {{reply.timestamp | date: 'EEE MMM d, y h:mm a'}}</h4>
+                <!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
+                </div>
             </span>
             <!-- replies -->
             
             <!-- Added a reply input -->
+            <div class="replyInputField">
             <div class="input-group" ng-attr-id="{{ 'replybox-' + $index }}" style="visibility:visible">
                 <textarea type="text" id="new-reply" class="form-control"
-                    placeholder="reply" ng-model="input3.wholeMsg"></textarea>
+                    placeholder="Your reply" ng-model="input3.wholeMsg"></textarea>
                 <span class="input-group-btn">
                     <button class="btn btn-default" type="button" ng-click="addReply(todo,input3)">Reply</button>
                 </span>
             </div><!-- /reply-group -->
+            </div>
 		</span>
 	</div>
 
