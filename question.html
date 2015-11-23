@@ -66,6 +66,21 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 
 </div><!-- /input-group -->
 
+<div class="input-group2">
+        <!--
+            <form id="todo-form" ng-submit="addTodo()">
+        -->
+        <textarea type="text" id="new-todo1" class="form-control"
+                  placeholder="Title"
+                  ng-model="input1.wholeMsg" position.divleft></textarea>
+        <textarea type="text" id="new-todo3" class="form-control"
+              placeholder="AddPollOpinion"
+              ng-model="input3.wholeMsg" position.divleft></textarea>
+
+        <button class="btn btn-info" type="button" ng-click="addPollOption()">AddPollOption</button>
+        <button class="btn btn-info" type="button" ng-click="addPoll()">Raise A Poll</button>
+
+</div><!-- /input-group -->
 
 
 
@@ -81,9 +96,32 @@ ng-model="input2.wholeMsg" autofocus></textarea>
         </h4>
 
 		<!-- <button class="btn btn-default btn-xs glyphicon glyphicon-hand-up" ng-click="addEcho(todo)" ng-disabled="$storage[todo.$id]">Like</button> -->
-        <h4 id="description" class="list-group-item-text">
-            <span ng-bind-html="todo.desc">Description: {{todo.desc}}</span>
-        </h4>
+        <div ng-if="todo.desc">
+            <h4 id="description" class="list-group-item-text">
+                <span ng-bind-html="todo.desc">Description: {{todo.desc}}</span>
+            </h4>
+        </div>
+        <div ng-if="!todo.desc">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="todo2 in todo.polloption">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="{{todo2.name}}">
+                                {{todo2.name}} {{todo2.numberofvote}}
+                            </label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <button type="button" ng-click ="addonevote(todo) " class="btn btn-primary btn-sm">
+                    Vote
+                </button>
+            </div>
+        </div>
         <h4 id="date" class="list-group-item-text text-right">Created: {{todo.dateString | date: 'EEE MMM d, y h:mm a'}}</h4>
 			<!-- <span ng-show="todo.tags">description: {{todo.desc}}</span></p> -->
 <!-- 			<span ng-show="todo.body">body: {{todo.body}}</span></p>
@@ -97,6 +135,7 @@ ng-model="input2.wholeMsg" autofocus></textarea>
 	</div>
 
 	<!--
+ 
 
 	<div id="toTop" class="btn btn-info"><span class="fa fa-arrow-up">Back to Top</span></div>
 

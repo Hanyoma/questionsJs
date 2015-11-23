@@ -21,9 +21,29 @@
     margin-right: 5px;
 }
 
-.list-group .list-group-item {
-    height: 150px;
+.input-group2 .form-control#new-todo1 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 600px;
+    height:40px;
 }
+.input-group2 .form-control#new-todo3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 600px;
+    height:40px;
+}
+
+.input-group2 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.input-group2 .btn {
+    margin-bottom: 5px;
+    border-radius: 0;
+}
+
 
 .list-group .list-group-item .list-group-item-text#description{
     font-size: 15px;
@@ -44,7 +64,6 @@
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
-
 
 .icon{display: inline-block;}
 .icon,

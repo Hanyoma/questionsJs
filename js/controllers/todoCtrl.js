@@ -45,6 +45,12 @@ $scope.todos = $firebaseArray(query);
 //$scope.input.wholeMsg = '';
 $scope.editedTodo = null;
 
+var url = firebaseURL + roomId + "/pollings/";
+var echoRef2 = new Firebase(url);
+var query2 = echoRef2.orderByChild("order");
+$scope.todos2 = $firebaseArray(query2);
+$scope.editedTodo = null;
+
 // pre-precessing for collection
 $scope.$watchCollection('todos', function () {
 	var total = 0;
@@ -102,7 +108,7 @@ $scope.addTodo = function () {
 	var newTodo = $scope.input.wholeMsg.trim();
 	var newTodo2 = $scope.input2.wholeMsg.trim();
 	// No input, so just do nothing
-	if (!newTodo.length) {
+	if (!newTodo.length || !newTodo2.length) {
 		return;
 	}
 
@@ -120,7 +126,9 @@ $scope.addTodo = function () {
 		completed: false,
 		timestamp: new Date().getTime(),
 		tags: "...",
-		
+		polloption: null,
+        totalpollvotes: 0,
+
 		echo: 0,
 		order: 0
 	});
@@ -129,34 +137,53 @@ $scope.addTodo = function () {
 	$scope.input2.wholeMsg = '';
 };
 
-// $scope.addTodo2 = function () {
-// 	var newTodo = $scope.input.wholeMsg.trim();
-// 	// var newTodo = $scope.input.wholeMsg.trim();
-// 	// No input, so just do nothing
-// 	if (!newTodo.length) {
-// 		return;
-// 	}
+$scope.addPoll = function () {
+    var newTodo1 = $scope.input1.wholeMsg.trim();
+    if (!newTodo1.length) {
+        return;
+    }
 
-// 	var firstAndLast = $scope.getFirstAndRestSentence(newTodo);
-// 	var head = firstAndLast[0];
-// 	var desc = firstAndLast[1];
+    var firstAndLast = $scope.getFirstAndRestSentence(newTodo1);
+    var head = firstAndLast[0];
+    var desc = firstAndLast[1];
 
-// 	$scope.todos.$add({
-// 		wholeMsg: newTodo,
-// 		head: head,
-// 		headLastChar: head.slice(-1),
-// 		desc: desc,
-// 		linkedDesc: Autolinker.link(desc, {newWindow: false, stripPrefix: false}),
-// 		completed: false,
-// 		timestamp: new Date().getTime(),
-// 		tags: "...",
-// 		echo: 0,
-// 		order: 0
-// 	});
-// 	// remove the posted question in the input
-// 	$scope.input.wholeMsg = '';
-// };
+    $scope.todos.$add({
+        wholeMsg: newTodo1,
+        desc: "",
+        head: head,
+        headLastChar: head.slice(-1),
+        // desc: desc,
+        linkedDesc: Autolinker.link(desc, { newWindow: false, stripPrefix: false }),
+        completed: false,
+        timestamp: new Date().getTime(),
+        tags: "...",
+        polloption: $scope.todos2,
+        totalpollvotes: 0,
 
+        echo: 0,
+        order: 0
+    });
+
+    $scope.clearCompletedTodos2();
+
+    // remove the posted question in the input
+    $scope.input1.wholeMsg = '';
+    $scope.input3.wholeMsg = '';
+    
+};
+
+$scope.addPollOption = function () {
+    var newPollOption = $scope.input3.wholeMsg.trim();
+    if (!newPollOption.length) {
+        return;
+    }
+
+    $scope.todos2.$add({
+        name: newPollOption,
+        numberofvote: 0,});
+    $scope.input3.wholeMsg = '';
+
+}
 
 $scope.editTodo = function (todo) {
 	$scope.editedTodo = todo;
@@ -193,12 +220,22 @@ $scope.removeTodo = function (todo) {
 	$scope.todos.$remove(todo);
 };
 
+$scope.removeTodo2 = function (todo2) {
+    $scope.todos2.$remove(todo2);
+};
+
 $scope.clearCompletedTodos = function () {
 	$scope.todos.forEach(function (todo) {
 		if (todo.completed) {
 			$scope.removeTodo(todo);
 		}
 	});
+};
+
+$scope.clearCompletedTodos2 = function () {
+    $scope.todos2.forEach(function (todo2) {
+            $scope.removeTodo2(todo2);
+    });
 };
 
 $scope.toggleCompleted = function (todo) {
@@ -243,6 +280,17 @@ $scope.increaseMax = function () {
 
 $scope.toTop =function toTop() {
 	$window.scrollTo(0,0);
+};
+
+$scope.addonevote = function (todo) {
+    if (todo.polloption != null) {
+        todo.polloption.forEach(function (todo2) {
+            if (document.getElementById(todo2.name).checked) { todo2.numberofvote += 1; todo.totalpollvotes += 1; }
+        });
+        $scope.todos.$save(todo);
+
+    }
+
 };
 
 // Not sure what is this code. Todel
